@@ -65,7 +65,6 @@ async function run() {
     app.delete("/deleteOrder/:id", async (req, res) => {
       const result = await orderCollection.deleteOne({ _id: ObjectId(req.params.id) })
       res.send(result);
-      console.log(result);
     })
 
     //All Orders
@@ -107,7 +106,6 @@ async function run() {
         const documents = await userCollection.updateOne(filter, {
           $set: { role: "admin" }
         });
-        console.log(documents);
       }
       else {
         const role = "admin";
@@ -118,7 +116,6 @@ async function run() {
     // check admin or not 
     app.get('/checkAdmin/:email', async (req, res) => {
       const result = await userCollection.find({ email: req.params.email }).toArray();
-      console.log(result);
       res.send(result);
 
     })
